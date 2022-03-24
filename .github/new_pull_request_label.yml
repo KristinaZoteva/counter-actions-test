@@ -3,15 +3,15 @@ on:
   pull_request:
     types: [opened, reopened]
 
-jobs:
-  steps:
-    - name: Check WIP in PR Title
-      uses: embano1/wip@v1
-      with:
-        title: "${{ github.event.pull_request.title }}"
-        regex: "^[[:space:]]*(WIP)+(:)*"
-
-  if: success()
+#jobs:
+#  steps:
+#    - name: Check WIP in PR Title
+#      uses: embano1/wip@v1
+#      with:
+#        title: "${{ github.event.pull_request.title }}"
+#        regex: "^[[:space:]]*(WIP)+(:)*"
+#
+#  if: success()
   triage:
     permissions:
       pull-requests: write
