@@ -14,9 +14,8 @@ jobs:
           title: "${{ github.event.pull_request.title }}"
           regex: "^[[:space:]]*(WIP)+(:)*"
     if: success()
-        steps:
-          - name: Label pull request
-            uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
-            with:
-              add-labels: "new pull request"
-              repo-token: ${{ secrets.SECRET_ISSUE }}
+   - name: Label pull request
+     uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
+     with:
+       add-labels: "new pull request"
+       repo-token: ${{ secrets.SECRET_ISSUE }}
