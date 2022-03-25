@@ -16,9 +16,8 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-        if: contains(github.event.pull_request.title, 'WIP')
-
       - name: Label pull request
+        if: contains(github.event.pull_request.title, 'WIP' || github.event.pull_request.labels.*.name, 'WIP')
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
         with:
           add-labels: "new pull request"
