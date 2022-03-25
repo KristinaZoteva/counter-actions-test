@@ -1,10 +1,10 @@
 name: Pull-request tracking
 on:
-  pull_request:
+  pull_requests:
     types: [opened, reopened]
 
 jobs:
-  label_pull_request:
+  label_pull_requests:
     runs-on: ubuntu-latest
     permissions:
       pull_request: write
