@@ -3,6 +3,7 @@ on:
   pull_request_target:
 
 jobs:
+  label_pull_request:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
