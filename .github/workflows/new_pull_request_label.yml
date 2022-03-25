@@ -19,7 +19,7 @@ jobs:
       - name: Logging
         run: |
           echo ${{ github.event.pull_request.title }}
-          echo &{{ (github.event.pull_request.draft == false) }}
+          echo &{{ github.event.pull_request.draft }}
 
       - name: Add label pull request
         if: "!contains(github.event.pull_request.title, 'WIP') && !contains(github.event.pull_request.labels.*.name, 'WIP') && (github.event.pull_request.draft == false)"
