@@ -1,9 +1,6 @@
 name: Pull-request tracking
 on:
-  pull_request:
-    types:
-      - opened
-      - reopened
+  pull_request_target:
 
 jobs:
   label_pull_request:
