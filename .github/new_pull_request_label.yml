@@ -4,9 +4,18 @@ on:
     types: [opened, reopened]
 
 jobs:
-  permissions:
-    pull-requests: write
+  label_pull_request:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Label pull request
+        uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
+        with:
+          add-labels: "new pull request"
+          repo-token: ${{ secrets.SECRET_ISSUES }}
+
+
 #  steps:
 #    - name: Check WIP in PR Title
 #      uses: embano1/wip@v1
@@ -15,7 +24,3 @@ jobs:
 #        regex: "^[[:space:]]*(WIP)+(:)*"
 
 #  if: success()
-    steps:
-      - uses: actions/labeler@v4
-        with:
-          repo-token: ${{ secrets.SECRET_ISSUE }}
