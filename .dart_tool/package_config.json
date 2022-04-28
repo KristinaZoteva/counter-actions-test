@@ -14,6 +14,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "bottom_inset_observer",
+      "rootUri": "file:///Users/Krista4ok/dev/sdk/flutter/.pub-cache/hosted/pub.dartlang.org/bottom_inset_observer-3.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "bottom_sheet",
+      "rootUri": "file:///Users/Krista4ok/dev/sdk/flutter/.pub-cache/hosted/pub.dartlang.org/bottom_sheet-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
       "name": "characters",
       "rootUri": "file:///Users/Krista4ok/dev/sdk/flutter/.pub-cache/hosted/pub.dartlang.org/characters-1.2.0",
       "packageUri": "lib/",
@@ -155,10 +167,10 @@
       "name": "counter_actions_test",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "2.16"
+      "languageVersion": "2.13"
     }
   ],
-  "generated": "2022-03-24T07:57:58.182989Z",
+  "generated": "2022-04-04T06:58:22.981488Z",
   "generator": "pub",
-  "generatorVersion": "2.16.1"
+  "generatorVersion": "2.16.2"
 }

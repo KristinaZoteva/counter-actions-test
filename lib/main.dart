@@ -1,3 +1,4 @@
+import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -30,14 +31,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,24 +38,44 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+        child: ElevatedButton(
+          onPressed: () {
+            showSheet(context);
+          },
+          child: const Text('Open Bottom Sheet'),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
+}
+
+void showSheet(BuildContext context) {
+  showFlexibleBottomSheet(
+    context: context,
+    maxHeight: 1,
+    initHeight: 1,
+    isExpand: false,
+    builder: (_, scrollController, __) {
+      return SingleChildScrollView(
+        controller: scrollController,
+        child: Column(
+          children: [
+            Container(
+              height: 150,
+              width: double.infinity,
+              color: Colors.blue,
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            Container(
+              height: 150,
+              width: double.infinity,
+              color: Colors.red,
+            ),
+          ],
+        ),
+      );
+    },
+  );
 }

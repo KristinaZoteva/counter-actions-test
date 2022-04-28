@@ -1,0 +1,32 @@
+name: "Issue comment"
+
+on:
+  workflow_call:
+    inputs:
+      PANA_TOTAL:
+        type: string
+        required: true
+    secrets:
+      SECRET_ISSUES:
+        required: true
+
+jobs:
+  label_issues:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Comment issuess
+      - uses: dessant/lock-threads@e460dfeb36e731f3aeb214be6b0c9a9d9a67eda6
+        with:
+          process-only: 'issues'
+          repo-token: ${{ secrets.SECRET_ISSUES }}
+          issue-comment: >
+            Please check that the issue is described correctly. The name should reflect the meaning
+            of the issue. The body of the issue should contain a description of the problem and code
+            to reproduce it. You can use the issue [template](${{ inputs.PANA_TOTAL }}) to make it easy.
+      - name: Label issues
+        uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
+        with:
+          add-labels: "WIP"
+          repo-token: ${{ secrets.SECRET_ISSUES }}

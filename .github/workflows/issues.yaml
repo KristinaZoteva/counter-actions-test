@@ -1,0 +1,14 @@
+name: Label issues
+on:
+  issues:
+    types:
+      - reopened
+      - opened
+
+jobs:
+  label_issues:
+    uses: KristinaZoteva/counter-actions-test/.github/workflows/new_issues_label.yml@main
+    with:
+      PANA_TOTAL: 'https://github.com/KristinaZoteva/counter-actions-test/issues/new'
+    secrets:
+      SECRET_ISSUES: ${{ secrets.SECRET_ISSUE }}
