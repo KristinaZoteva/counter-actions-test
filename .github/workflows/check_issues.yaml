@@ -17,7 +17,7 @@ jobs:
       issues: write
     steps:
       - name: Comment issuess
-      - uses: dessant/lock-threads@e460dfeb36e731f3aeb214be6b0c9a9d9a67eda6
+        uses: dessant/lock-threads@e460dfeb36e731f3aeb214be6b0c9a9d9a67eda6
         with:
           process-only: 'issues'
           repo-token: ${{ secrets.SECRET_ISSUES }}
