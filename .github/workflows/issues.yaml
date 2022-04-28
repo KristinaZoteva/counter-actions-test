@@ -11,4 +11,4 @@ jobs:
     with:
       PANA_TOTAL: 'https://github.com/KristinaZoteva/counter-actions-test/issues/new'
     secrets:
-      SECRET_ISSUE: ${{ secrets.SECRET_ISSUE }}
+      SECRET_ISSUES: ${{ secrets.SECRET_ISSUE }}

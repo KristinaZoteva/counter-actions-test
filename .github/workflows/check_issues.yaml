@@ -7,7 +7,7 @@ on:
         type: string
         required: true
     secrets:
-      SECRET_ISSUE:
+      SECRET_ISSUES:
         required: true
 
 jobs:
