@@ -19,7 +19,7 @@ jobs:
       - name: Comment issuess
         uses:  ben-z/actions-comment-on-issue@1.0.2
         with:
-          repo-token: ${{ secrets.SECRET_ISSUE }}
+          #repo-token: ${{ secrets.SECRET_ISSUE }}
           message : "Please check that the issue is described correctly. The name should reflect the meaning
             of the issue. The body of the issue should contain a description of the problem and code
             to reproduce it. You can use the issue [template]( ${{ inputs.PANA_TOTAL }} ) to make it easy."
