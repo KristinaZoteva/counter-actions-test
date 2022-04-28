@@ -20,7 +20,7 @@ jobs:
         uses: dessant/lock-threads@e460dfeb36e731f3aeb214be6b0c9a9d9a67eda6
         with:
           process-only: 'issues'
-          repo-token: ${{ secrets.SECRET_ISSUE }}
+          #repo-token: ${{ secrets.SECRET_ISSUE }}
           issue-comment: >
             Please check that the issue is described correctly. The name should reflect the meaning
             of the issue. The body of the issue should contain a description of the problem and code
@@ -29,4 +29,4 @@ jobs:
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
         with:
           add-labels: "WIP"
-          repo-token: ${{ secrets.SECRET_ISSUE }}
+         # repo-token: ${{ secrets.SECRET_ISSUE }}
