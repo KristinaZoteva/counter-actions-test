@@ -7,8 +7,18 @@ on:
 
 jobs:
   label_issues:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Check issue title
+       run: |
+       TITLE="${{ github.event.issue.title }}"
+       PREPAREDTITLE=${TITLE//\[BUG\]/}
+       PREPAREDTITLE=${TITLE//BUG/}
+       PREPAREDTITLE=${PREPAREDTITLE// /}
+       echo ${PREPAREDTITLE}
+    if: "(github.event.issue.title == [BUG]) || (github.event.issue.body == null)"
     uses: KristinaZoteva/counter-actions-test/.github/workflows/check_issues.yaml@main
     with:
-      PANA_TOTAL: 'https://github.com/KristinaZoteva/counter-actions-test/issues/new'
+      REPO_PATH: 'https://github.com/KristinaZoteva/counter-actions-test/issues/new'
     secrets:
       SECRET_ISSUES: ${{ secrets.SECRET_ISSUE }}

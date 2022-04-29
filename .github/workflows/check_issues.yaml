@@ -3,7 +3,7 @@ name: "Issue comment"
 on:
   workflow_call:
     inputs:
-      PANA_TOTAL:
+      REPO_PATH:
         type: string
         required: true
     secrets:
