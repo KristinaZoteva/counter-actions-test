@@ -7,14 +7,10 @@ on:
 
 jobs:
   label_issues:
-   runs-on: ubuntu-latest
-   steps:
-     - name: Check issue title
-       run: |
-       ${{ PREPAREDTITLE=${github.event.issue.title//\[BUG\]/}
-       PREPAREDTITLE=${github.event.issue.title//BUG/}
-       PREPAREDTITLE=${PREPAREDTITLE// /}
-       echo ${PREPAREDTITLE}}}
+    PREPAREDTITLE=${github.event.issue.title//\[BUG\]/}
+    PREPAREDTITLE=${github.event.issue.title//BUG/}
+    PREPAREDTITLE=${PREPAREDTITLE// /}
+    echo ${PREPAREDTITLE}
     if: "($PREPAREDTITLE <= 5) || (github.event.issue.body == null)"
     uses: KristinaZoteva/counter-actions-test/.github/workflows/check_issues.yaml@main
     with:
