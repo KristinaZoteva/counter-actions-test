@@ -16,7 +16,7 @@ jobs:
        PREPAREDTITLE=${TITLE//BUG/}
        PREPAREDTITLE=${PREPAREDTITLE// /}
        echo ${PREPAREDTITLE}
-    if: "(github.event.issue.title == [BUG]) || (github.event.issue.body == null)"
+    if: "($PREPAREDTITLE <= 5) || (github.event.issue.body == null)"
     uses: KristinaZoteva/counter-actions-test/.github/workflows/check_issues.yaml@main
     with:
       REPO_PATH: 'https://github.com/KristinaZoteva/counter-actions-test/issues/new'
