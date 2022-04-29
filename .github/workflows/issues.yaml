@@ -11,9 +11,8 @@ jobs:
    steps:
      - name: Check issue title
        run: |
-       TITLE="${{ github.event.issue.title }}"
-       PREPAREDTITLE=${TITLE//\[BUG\]/}
-       PREPAREDTITLE=${TITLE//BUG/}
+       PREPAREDTITLE=${github.event.issue.title//\[BUG\]/}
+       PREPAREDTITLE=${github.event.issue.title//BUG/}
        PREPAREDTITLE=${PREPAREDTITLE// /}
        echo ${PREPAREDTITLE}
     if: "($PREPAREDTITLE <= 5) || (github.event.issue.body == null)"
