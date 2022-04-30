@@ -4,16 +4,19 @@ on:
     types:
       - reopened
       - opened
-
+  PREPAREDTITLE
 jobs:
   label_issues:
-    PREPAREDTITLE=${github.event.issue.title//\[BUG\]/}
-    PREPAREDTITLE=${github.event.issue.title//BUG/}
-    PREPAREDTITLE=${PREPAREDTITLE// /}
-    echo ${#PREPAREDTITLE}
-    if: ${{ ${#PREPAREDTITLE} < 4 }}
-    uses: KristinaZoteva/counter-actions-test/.github/workflows/check_issues.yaml@main
-    with:
-      REPO_PATH: 'https://github.com/KristinaZoteva/counter-actions-test/issues/new'
-    secrets:
-      SECRET_ISSUES: ${{ secrets.SECRET_ISSUE }}
+   runs-on: ubuntu-latest
+   env:
+     Title_without_[]: ${github.event.issue.title//\[\w+\]/}
+     Prepared_title: ${Title_without_[]// /}
+     Length_title: ${#Prepared_title}
+   steps:
+     - name: Run check issues
+       if: '(${Length_title} < 4) ||'
+       uses: KristinaZoteva/counter-actions-test/.github/workflows/check_issues.yaml@main
+     with:
+          REPO_PATH: 'https://github.com/KristinaZoteva/counter-actions-test/issues/new'
+          secrets:
+            SECRET_ISSUES: ${{ secrets.SECRET_ISSUE }}
