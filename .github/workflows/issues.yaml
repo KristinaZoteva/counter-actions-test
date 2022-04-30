@@ -14,7 +14,7 @@ jobs:
      Length_title: ${#Prepared_title}
    steps:
      - name: Run check issues
-       if: '(${Length_title} < 4) ||'
+       if: '(${Length_title} < 4) || (#github.event.issue.body < 10)'
        uses: KristinaZoteva/counter-actions-test/.github/workflows/check_issues.yaml@main
      with:
           REPO_PATH: 'https://github.com/KristinaZoteva/counter-actions-test/issues/new'
