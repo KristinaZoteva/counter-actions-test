@@ -26,4 +26,4 @@ jobs:
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
         with:
           add-labels: "WIP"
-         # repo-token: ${{ secrets.SECRET_ISSUE }}
+          repo-token: ${{ secrets.SECRET_ISSUE }}
