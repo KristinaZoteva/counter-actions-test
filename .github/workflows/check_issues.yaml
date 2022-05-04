@@ -11,12 +11,8 @@ on:
         required: true
 
 jobs:
-  comment-issues:
+  comment-issuess:
     runs-on: ubuntu-latest
-    env:
-      TITLE: ${github.event.issue.title//\[\w+\]/}
-      PREPARED_TITLE: ${TITLE// /}
-      LENGTH_TITLE: ${#PREPARED_TITLE}
     permissions:
       issues: write
     steps:
