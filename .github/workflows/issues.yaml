@@ -7,7 +7,7 @@ on:
       - opened
 
 jobs:
-  comment_issues:
+  comment-issues:
     runs-on: ubuntu-latest
     env:
       TITLE: ${github.event.issue.title//\[\w+\]/}
