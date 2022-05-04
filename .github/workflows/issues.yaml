@@ -18,4 +18,4 @@ jobs:
      with:
         REPO_PATH: 'https://github.com/KristinaZoteva/counter-actions-test/issues/new'
         secrets:
-            SECRET_ISSUES: ${{ secrets.SECRET_ISSUE }}
+          SECRET_ISSUES: ${{ secrets.SECRET_ISSUE }}
