@@ -18,7 +18,6 @@ jobs:
           PREPARED_TITLE: ${TITLE// /}
           TITLE_LENGTH: ${#PREPARED_TITLE}
         run: |
-          echo $TITLE_LENGTH
           echo"::set_output name=title_length::$TITLE_LENGTH"
 
   comment-issue:
