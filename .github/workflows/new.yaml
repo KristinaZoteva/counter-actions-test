@@ -19,11 +19,11 @@ jobs:
           echo"::set_output name=title_length::$LENGTH_TITLE"
 
       - name: Comment issue
-        if: steps.getLength.outputs.title_length < 5
+        if: 'steps.getLength.outputs.title_length < 5'
         uses: KristinaZoteva/counter-actions-test/.github/workflows/check_issues.yaml@main
         with:
           REPO_PATH: 'https://github.com/KristinaZoteva/counter-actions-test/issues/new'
-      secrets:
-          SECRET_ISSUES: ${{ secrets.SECRET_ISSUE }}
+        secrets:
+            SECRET_ISSUES: ${{ secrets.SECRET_ISSUE }}
 
 
