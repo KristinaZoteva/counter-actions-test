@@ -6,8 +6,10 @@ on:
       - reopened
       - opened
 jobs:
-  get-lenhtg:
+  get-length:
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.getLength.outputs.title_length }}
     steps:
       - name: get title length
         id: getLength
@@ -17,8 +19,9 @@ jobs:
           LENGTH_TITLE: ${#PREPARED_TITLE}
         run: |
           echo"::set_output name=title_length::$LENGTH_TITLE"
+
   comment-issue:
-    if: 'steps.getLength.outputs.title_length < 5'
+    if: 'needs.get-length.output1.title_length < 5'
     uses: KristinaZoteva/counter-actions-test/.github/workflows/check_issues.yaml@main
     with:
       REPO_PATH: 'https://github.com/KristinaZoteva/counter-actions-test/issues/new'
