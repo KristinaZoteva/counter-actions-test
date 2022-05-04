@@ -13,7 +13,7 @@ env:
 
 jobs:
   comment-issues:
-    if: '($LENGTH_TITLE < 4) || (#github.event.issue.body < 10)'
+    if: ($LENGTH_TITLE < 4) || (#github.event.issue.body < 10)
     uses: KristinaZoteva/counter-actions-test/.github/workflows/check_issues.yaml@main
     with:
       REPO_PATH: 'https://github.com/KristinaZoteva/counter-actions-test/issues/new'
