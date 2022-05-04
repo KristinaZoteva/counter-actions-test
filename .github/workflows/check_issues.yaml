@@ -11,7 +11,7 @@ on:
         required: true
 
 jobs:
-  label_issues:
+  comment_issues:
     runs-on: ubuntu-latest
     permissions:
       issues: write
