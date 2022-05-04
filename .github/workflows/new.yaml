@@ -15,7 +15,7 @@ jobs:
         id: getLength
         env:
           TITLE: ${github.event.issue.title//\[\w+\]/}
-          PREPARED_TITLE: ${{ toJson(TITLE// /) }}
+          PREPARED_TITLE: ${{ toJson(${TITLE// /)} }}
         run: |
           echo "$PREPARED_TITLE"
           TL=$(echo $PREPARED_TITLE | jq '. | lenght')
