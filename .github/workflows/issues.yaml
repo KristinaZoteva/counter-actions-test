@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Definition of variables
-        uses: KristinaZoteva/counter-actions-test/.github/workflows/check_issues.yaml@main
         env:
          TITLE: ${github.event.issue.title//\[\w+\]/}
          PREPARED_TITLE: ${TITLE// /}
          LENGTH_TITLE: ${#PREPARED_TITLE}
+        run: |
 
       - name: Comment issue
         if: '(${LENGTH_TITLE} < 4) || (#github.event.issue.body < 10)'
