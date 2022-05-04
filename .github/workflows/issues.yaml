@@ -9,14 +9,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - env:
-         Title_without_[]: ${github.event.issue.title//\[\w+\]/}
-         Prepared_title: ${Title_without_[]// /}
-         Length_title: ${#Prepared_title}
-       - name: Run check issues
-       if: '(${Length_title} < 4) || (#github.event.issue.body < 10)'
-       uses: KristinaZoteva/counter-actions-test/.github/workflows/check_issues.yaml@main
-       with:
+     - name: Run check issues
+      env:
+           Title_without_[]: ${github.event.issue.title//\[\w+\]/}
+           Prepared_title: ${Title_without_[]// /}
+           Length_title: ${#Prepared_title}
+      if: '(${Length_title} < 4) || (#github.event.issue.body < 10)'
+      uses: KristinaZoteva/counter-actions-test/.github/workflows/check_issues.yaml@main
+      with:
           REPO_PATH: 'https://github.com/KristinaZoteva/counter-actions-test/issues/new'
-       secrets:
-         SECRET_ISSUES: ${{ secrets.SECRET_ISSUE }}
+      secrets:
+          SECRET_ISSUES: ${{ secrets.SECRET_ISSUE }}
