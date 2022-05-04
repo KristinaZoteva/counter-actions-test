@@ -16,7 +16,7 @@ jobs:
         env:
           TITLE: ${github.event.issue.title//\[\w+\]/}
           PREPARED_TITLE: ${TITLE// /}
-          TITLE_toJson: ${{ toJson(${ PREPARED_TITLE }) }}
+          TITLE_toJson: ${{ toJson(PREPARED_TITLE) }}
         run: |
           echo "$PREPARED_TITLE"
           TL=$(echo $PREPARED_TITLE | jq '. | lenght')
