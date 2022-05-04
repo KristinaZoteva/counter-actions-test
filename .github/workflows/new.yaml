@@ -15,10 +15,11 @@ jobs:
         id: getLength
         env:
           TITLE: ${github.event.issue.title//\[\w+\]/}
-          PREPARED_TITLE: ${TITLE// /}
-          LENGTH_TITLE: ${#PREPARED_TITLE}
+          PREPARED_TITLE: ${{ toJson(TITLE// /) }}
         run: |
-          echo"::set_output name=title_length::$LENGTH_TITLE"
+          echo "$PREPARED_TITLE"
+          TL=$(echo $PREPARED_TITLE | jq '. | lenght')
+          echo"::set_output name=title_length::$TL"
 
   comment-issue:
     if: 'needs.get-length.output1.title_length < 5'
