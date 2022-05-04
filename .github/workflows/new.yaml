@@ -1,0 +1,29 @@
+name: "Issue comment"
+
+on:
+  issues:
+    types:
+      - reopened
+      - opened
+jobs:
+  comment_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get title length
+        id: getLength
+        env:
+          TITLE: ${github.event.issue.title//\[\w+\]/}
+          PREPARED_TITLE: ${TITLE// /}
+          LENGTH_TITLE: ${#PREPARED_TITLE}
+        run: |
+          echo"::set_output name=title_length::$LENGTH_TITLE"
+
+      - name: Comment issue
+        if: steps.getLength.outputs.title_length < 5
+        uses: KristinaZoteva/counter-actions-test/.github/workflows/check_issues.yaml@main
+        with:
+          REPO_PATH: 'https://github.com/KristinaZoteva/counter-actions-test/issues/new'
+      secrets:
+          SECRET_ISSUES: ${{ secrets.SECRET_ISSUE }}
+
+
