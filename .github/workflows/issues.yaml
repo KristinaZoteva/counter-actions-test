@@ -1,9 +1,11 @@
 name: Label issues
+
 on:
   issues:
     types:
       - reopened
       - opened
+
 jobs:
   comment_issues:
     runs-on: ubuntu-latest
@@ -11,11 +13,11 @@ jobs:
       - name: Check issues
         uses: KristinaZoteva/counter-actions-test/.github/workflows/check_issues.yaml@main
         env:
-           title_without_[]: ${github.event.issue.title//\[\w+\]/}
-           prepared_title: ${title_without_[]// /}
-           length_title: ${#prepared_title}
-        if: '(${length_title} < 4) || (#github.event.issue.body < 10)'
+           TITLE: ${github.event.issue.title//\[\w+\]/}
+           PREPARED_TITLE: ${TITLE// /}
+           LENGTH_TITLE: ${#PREPARED_TITLE}
+        if: '(${LENGTH_TITLE} < 4) || (#github.event.issue.body < 10)'
         with:
           REPO_PATH: 'https://github.com/KristinaZoteva/counter-actions-test/issues/new'
-       secrets:
-          SECRET_ISSUES: ${{ secrets.SECRET_ISSUE }}
+     secrets:
+       SECRET_ISSUES: ${{ secrets.SECRET_ISSUE }}
