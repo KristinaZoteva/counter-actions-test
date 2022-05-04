@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Definition of variables
+        uses: KristinaZoteva/counter-actions-test/.github/workflows/check_issues.yaml@main
         env:
          TITLE: ${github.event.issue.title//\[\w+\]/}
          PREPARED_TITLE: ${TITLE// /}
