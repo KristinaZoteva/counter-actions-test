@@ -16,9 +16,9 @@ jobs:
         env:
           TITLE: ${github.event.issue.title//\[\w+\]/}
           PREPARED_TITLE: ${TITLE// /}
-          TITLE_LENGTH: ${#PREPARED_TITLE}
+          TITLE_LENGTH: ${{#PREPARED_TITLE}}
         run: |
-          echo"::set_output name=title_length::TITLE_LENGTH"
+          echo"::set_output name=title_length:: $TITLE_LENGTH"
 
   comment-issue:
     if: 'needs.get-length.output1.title_length < 5'
