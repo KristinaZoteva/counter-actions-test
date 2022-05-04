@@ -1,4 +1,4 @@
-name: Label issues
+name: "Issue comment"
 
 on:
   issues:
@@ -9,7 +9,6 @@ on:
 jobs:
   comment_issues:
     runs-on: ubuntu-latest
-
     steps:
       - name: Check issues
         uses: KristinaZoteva/counter-actions-test/.github/workflows/check_issues.yaml@main
@@ -20,5 +19,5 @@ jobs:
         if: '(${LENGTH_TITLE} < 4) || (#github.event.issue.body < 10)'
         with:
           REPO_PATH: 'https://github.com/KristinaZoteva/counter-actions-test/issues/new'
-     secrets:
-       SECRET_ISSUES: ${{ secrets.SECRET_ISSUE }}
+       secrets:
+          SECRET_ISSUES: ${{ secrets.SECRET_ISSUE }}
