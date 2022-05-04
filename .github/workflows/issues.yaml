@@ -14,7 +14,7 @@ env:
 jobs:
   comment-issues:
     uses: KristinaZoteva/counter-actions-test/.github/workflows/check_issues.yaml@main
-    if: '((#github.event.issue.title < 4) || (#github.event.issue.body < 10))'
+    if: '((#{github.event.issue.title} < 4) || (#{github.event.issue.body} < 10))'
     with:
       REPO_PATH: 'https://github.com/KristinaZoteva/counter-actions-test/issues/new'
     secrets:
