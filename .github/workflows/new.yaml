@@ -14,7 +14,7 @@ jobs:
       - name: get title length
         id: getLength
         run: |
-          TITLE=${github.event.issue.title}
+          TITLE=${{ github.event.issue.title }}
           TITLE2=${TITLE//\[\w+\]/}
           PREPARED_TITLE=${TITLE// /}
           TITLE_LENGTH=${#PREPARED_TITLE}
