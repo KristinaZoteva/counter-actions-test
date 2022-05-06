@@ -16,7 +16,7 @@ jobs:
         env:
           TITLE: ${{ github.event.issue.title }}
           PREPARED_TITLE: $TITLE | sed 's/ //g; s/\[bug\]//; s/\[Bug\]//; s/\[BUG\]//'
-        run: echo"::set_output name=title_length::${#TITLE}"
+        run: echo"::set_output name=title_length::${#PREPARED_TITLE}"
 
 
   comment-issue:
