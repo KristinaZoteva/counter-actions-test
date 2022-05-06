@@ -15,13 +15,13 @@ jobs:
         id: getLength
         run: |
           TITLE=${{ github.event.issue.title }}
-          echo $TITLE
+          echo TITLE
           TITLE2=${TITLE//\[\w+\]/}
-          echo $TITLE2
+          echo TITLE2
           PREPARED_TITLE=${TITLE// /}
-          echo $PREPARED_TITLE
+          echo PREPARED_TITLE
           TITLE_LENGTH=${#PREPARED_TITLE}
-          echo $TITLE_LENGTH
+          echo TITLE_LENGTH
           echo"::set_output name=title_length::${TITLE_LENGTH}"
 
   comment-issue:
