@@ -16,7 +16,7 @@ jobs:
         run: |
           TITLE=${{ github.event.issue.title }}
           echo $TITLE
-          TITLE2=${TITLE}
+          TITLE2=TITLE
           echo $TITLE2
 
   comment-issue:
