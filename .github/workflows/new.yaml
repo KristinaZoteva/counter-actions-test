@@ -16,6 +16,8 @@ jobs:
         run: |
           TITLE=${{ github.event.issue.title }}
           echo $TITLE
+          TITLE2=${TITLE//\[\w+\]/}
+          echo $TITLE2
 
   comment-issue:
     if: 'needs.get-length.output1.title_length < 5'
