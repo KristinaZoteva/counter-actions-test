@@ -14,8 +14,7 @@ jobs:
       - name: get title length
         id: getLength
         env:
-          TITLE: ${{ github.event.issue.title }}
-          PREPARED_TITLE: ${{ TITLE | sed 's/ //g; s/\[bug\]//; s/\[Bug\]//; s/\[BUG\]//' }}
+          PREPARED_TITLE: ${{ github.event.issue.title | sed 's/ //g; s/\[bug\]//; s/\[Bug\]//; s/\[BUG\]//' }}
         run: |
           echo"::set_output name=title_length::${env.PREPARED_TITLE}"
 
