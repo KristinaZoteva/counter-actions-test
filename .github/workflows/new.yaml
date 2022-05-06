@@ -15,9 +15,9 @@ jobs:
         id: getLength
         env:
           TITLE: ${{ github.event.issue.title }}
+          PREPARED_TITLE: $env.TITLE | sed 's/ //g; s/\[bug\]//; s/\[Bug\]//; s/\[BUG\]//'
         run: |
-          PREPARED_TITLE=$env.TITLE | sed 's/ //g; s/\[bug\]//; s/\[Bug\]//; s/\[BUG\]//'
-          echo"::set_output name=title_length::${PREPARED_TITLE}"
+          echo"::set_output name=title_length::${env.PREPARED_TITLE}"
 
 
   comment-issue:
