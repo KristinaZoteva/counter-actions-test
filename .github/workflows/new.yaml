@@ -5,25 +5,11 @@ on:
     types:
       - reopened
       - opened
-jobs:
-  get-length:
-    runs-on: ubuntu-latest
-    outputs:
-      title: ${{ steps.getLength.outputs.title_length }}
-      body: ${{ steps.getLength.outputs.body_length }}
-    steps:
-      - name: get length
-        env:
-          TITLE: ${{ github.event.issue.title }}
-          BODY: ${{ github.event.issue.body }}
-        run: |
-          PREPARED_TITLE=$(echo $TITLE | sed 's/ //g; s/\[bug\]//; s/\[Bug\]//; s/\[BUG\]//')
-          echo "::set_output name=title_length::${#PREPARED_TITLE}"
-          echo "::set_output name=body_length::${#BODY}"
 
+jobs:
   check-issue:
-    needs: get-length
-    if: 'needs.get-length.title < 5 || needs.get-length.body < 5'
     uses: KristinaZoteva/counter-actions-test/.github/workflows/check_issues.yaml@main
     with:
       REPO_PATH: 'https://github.com/KristinaZoteva/counter-actions-test/issues/new'
+      ISSUE_TITLE: ${{ github.event.issue.title }}
+      ISSUE_BODY: ${{ github.event.issue.body }}
