@@ -1,4 +1,4 @@
-name: "Issue comment"
+name: "Issue check"
 
 on:
   issues:
@@ -26,3 +26,5 @@ jobs:
     uses: KristinaZoteva/counter-actions-test/.github/workflows/check_issues.yaml@main
     with:
       REPO_PATH: 'https://github.com/KristinaZoteva/counter-actions-test/issues/new'
+    secrets:
+      SECRET_ISSUES: ${{ secrets.SECRET_ISSUES }}
