@@ -12,7 +12,7 @@ jobs:
       title: ${{ steps.getLength.outputs.title_length }}
       body: ${{ steps.getLength.outputs.body_length }}
     steps:
-      - name: get title length
+      - name: get length
         env:
           TITLE: ${{ github.event.issue.title }}
           BODY: ${{ github.event.issue.body }}
