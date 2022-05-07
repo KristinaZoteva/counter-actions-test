@@ -23,8 +23,7 @@ jobs:
       TITLE: ${{ inputs.ISSUE_TITLE }}
       BODY: ${{ inputs.ISSUE_BODY }}
     steps:
-      - name: Get length
-        id: getLength
+      - id: getLength
         run: |
           PREPARED_TITLE=$(echo $TITLE | sed 's/ //g; s/\[bug\]//; s/\[Bug\]//; s/\[BUG\]//')
           echo "::set_output name=title_length::${#PREPARED_TITLE}"
@@ -32,7 +31,7 @@ jobs:
 
   check-issue:
     needs: get-length
-    if: 'needs.get-length.outputs.title < 5 || needs.get-length.outputs.body < 5'
+    if: 'needs.get-length.outputs.title < 5'
     runs-on: ubuntu-latest
     permissions:
       issues: write
