@@ -34,7 +34,7 @@ jobs:
 
       - name: print
         run: |
-          echo ${{ steps.getLength.outputs.title.value }}
+          echo ${steps.getLength.outputs.title.value}
 
       - name: Label issue
         if: steps.getLength.outputs.title.value <= 5
