@@ -26,7 +26,7 @@ jobs:
           echo "::set_output name=title_length::${#PREPARED_TITLE}"
           echo "::set_output name=body_length::${#BODY}"
 
-  comment-issuess:
+  check-issue:
     needs: get-length
     if: 'needs.get-length.title < 5 || needs.get-length.body < 5'
     runs-on: ubuntu-latest
