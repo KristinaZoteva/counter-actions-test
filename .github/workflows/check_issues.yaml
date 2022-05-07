@@ -14,7 +14,7 @@ on:
         required: true
 
 jobs:
-  get-length:
+  check-issue:
     runs-on: ubuntu-latest
     outputs:
       title: ${{ steps.getLength.outputs.title_length }}
@@ -22,28 +22,26 @@ jobs:
     env:
       TITLE: ${{ inputs.ISSUE_TITLE }}
       BODY: ${{ inputs.ISSUE_BODY }}
+    permissions:
+      issues: write
+
     steps:
       - id: getLength
         run: |
-          PREPARED_TITLE=$(echo $TITLE | sed 's/ //g; s/\[bug\]//; s/\[Bug\]//; s/\[BUG\]//')
-          echo "::set_output name=title_length::${#PREPARED_TITLE}"
-          echo "::set_output name=body_length::${#BODY}"
+            PREPARED_TITLE=$(echo $TITLE | sed 's/ //g; s/\[bug\]//; s/\[Bug\]//; s/\[BUG\]//')
+            echo "::set_output name=title_length::${#PREPARED_TITLE}"
+            echo "::set_output name=body_length::${#BODY}"
 
-  check-issue:
-    runs-on: ubuntu-latest
-    permissions:
-      issues: write
-    steps:
-        - name: Label issue
-          if: get-length.outputs.title <= 5
-          uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
-          with:
-           add-labels: "WIP"
+      - name: Label issue
+        if: steps.getLength.outputs.title <= 5
+        uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
+        with:
+         add-labels: "WIP"
 
-        - name: Comment issue
-          if: get-length.outputs.title <= 5
-          uses: KeisukeYamashita/create-comment@v1
-          with:
-            comment: Please check that the issue is described correctly. The name should reflect the meaning
+      - name: Comment issue
+        if: steps.getLength.outputs.title <= 5
+        uses: KeisukeYamashita/create-comment@v1
+        with:
+          comment: Please check that the issue is described correctly. The name should reflect the meaning
                   of the issue. The body of the issue should contain a description of the problem and code
                   to reproduce it. You can use the issue [template]( ${{ inputs.REPO_PATH }} ) to make it easy.
