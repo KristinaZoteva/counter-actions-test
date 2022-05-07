@@ -37,13 +37,13 @@ jobs:
           echo ${{ steps.getLength.outputs.title.value }}
 
       - name: Label issue
-        if: steps.getLength.outputs.title <= 5
+        if: steps.getLength.outputs.title.value <= 5
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
         with:
          add-labels: "WIP"
 
       - name: Comment issue
-        if: steps.getLength.outputs.title <= 5
+        if: steps.getLength.outputs.title.value <= 5
         uses: KeisukeYamashita/create-comment@v1
         with:
           comment: Please check that the issue is described correctly. The name should reflect the meaning
