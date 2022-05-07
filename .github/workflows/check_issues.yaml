@@ -30,7 +30,7 @@ jobs:
           echo "::set_output name=body_length::${#BODY}"
 
   check-issue:
-    if: needs.get-length.outputs.title < 5
+    if: 'needs.get-length.outputs.title < 5'
     runs-on: ubuntu-latest
     permissions:
       issues: write
