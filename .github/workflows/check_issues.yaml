@@ -17,21 +17,24 @@ jobs:
   get-length:
     runs-on: ubuntu-latest
     outputs:
-      title: ${{ steps.getLength.outputs.title_length }}
+      title: ${{ steps.getTitleLength.outputs.title_length }}
       body: ${{ steps.getLength.outputs.body_length }}
     env:
       TITLE: ${{ inputs.ISSUE_TITLE }}
       BODY: ${{ inputs.ISSUE_BODY }}
     steps:
-      - name: Get length
-        id: getLength
+      - name: Get title length
+        id: getTitleLength
         run: |
           PREPARED_TITLE=$(echo $TITLE | sed 's/ //g; s/\[bug\]//; s/\[Bug\]//; s/\[BUG\]//')
           echo "::set_output name=title_length::${#PREPARED_TITLE}"
+      - name: Get body length
+        id: getBodyLength
+        run: |
           echo "::set_output name=body_length::${#BODY}"
 
   check-issue:
-    needs: [ get-length ]
+    needs: get-length
     if: 'needs.get-length.outputs.title < 5 || needs.get-length.outputs.body < 5'
     runs-on: ubuntu-latest
     permissions:
