@@ -34,7 +34,7 @@ jobs:
 
       - name: print
         run: |
-          echo $title
+          echo $steps.getLength.outputs.title
 
       - name: Label issue
         if: steps.getLength.outputs.title <= 5
