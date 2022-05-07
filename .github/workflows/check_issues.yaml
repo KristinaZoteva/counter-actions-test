@@ -24,7 +24,7 @@ jobs:
         run: |
           PREPARED_TITLE=$(echo $inputs.ISSUE_TITLE | sed 's/ //g; s/\[bug\]//; s/\[Bug\]//; s/\[BUG\]//')
           echo "::set_output name=title_length::${#PREPARED_TITLE}"
-          echo "::set_output name=body_length::${#inputs.ISSUE_BODY}"
+          echo "::set_output name=body_length::${#${{ inputs.ISSUE_BODY }}}"
 
   check-issue:
     needs: get-length
