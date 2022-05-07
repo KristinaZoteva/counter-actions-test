@@ -20,7 +20,7 @@ jobs:
           echo "::set_output name=title_length::${#PREPARED_TITLE}"
 
 
-  comment-issue:
+  check-issue:
     needs: get-length
     if: 'needs.get-length.output1 < 5'
     uses: KristinaZoteva/counter-actions-test/.github/workflows/check_issues.yaml@main
