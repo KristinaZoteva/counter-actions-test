@@ -17,13 +17,14 @@ jobs:
   get-length:
     runs-on: ubuntu-latest
     outputs:
-      title: ${{ steps.Get-length.outputs.title_length }}
-      body: ${{ steps.Get-length.outputs.body_length }}
+      title: ${{ steps.getLength.outputs.title_length }}
+      body: ${{ steps.getLength.outputs.body_length }}
     env:
       TITLE: ${{ inputs.ISSUE_TITLE }}
       BODY: ${{ inputs.ISSUE_BODY }}
     steps:
       - name: Get-length
+        id: getLength
         run: |
           PREPARED_TITLE=$(echo $TITLE | sed 's/ //g; s/\[bug\]//; s/\[Bug\]//; s/\[BUG\]//')
           echo "::set_output name=title_length::${#PREPARED_TITLE}"
