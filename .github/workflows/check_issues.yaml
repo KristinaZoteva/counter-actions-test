@@ -32,6 +32,10 @@ jobs:
             echo "::set_output name=title_length::${#PREPARED_TITLE}"
             echo "::set_output name=body_length::${#BODY}"
 
+      - name: print
+        run: |
+          echo $outputs.title
+
       - name: Label issue
         if: steps.getLength.outputs.title <= 5
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
