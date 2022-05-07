@@ -6,9 +6,6 @@ on:
       REPO_PATH:
         type: string
         required: true
-    secrets:
-      SECRET_ISSUES:
-        required: true
 
 jobs:
   comment-issuess:
