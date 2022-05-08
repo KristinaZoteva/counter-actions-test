@@ -31,7 +31,7 @@ jobs:
 
   check-issue:
     needs: get-length
-    if: ${{ needs.get-length.outputs.title < 5 }} || ${{ needs.get-length.outputs.body == 0 }}
+    if: ${{ needs.get-length.outputs.title < 5 }} || ${{ needs.get-length.outputs.body = 0 }}
     runs-on: ubuntu-latest
     permissions:
       issues: write
