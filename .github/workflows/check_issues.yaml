@@ -29,13 +29,9 @@ jobs:
           echo "::set-output name=title_length::${#PREPARED_TITLE}"
           echo "::set-output name=body_length::${#BODY}"
 
-      - name: print
-        run: |
-          echo ${{ steps.getLength.outputs.body }}
-
   check-issue:
     needs: get-length
-    if: ${{ needs.get-length.outputs.title < 5 }} || ${{  needs.get-length.outputs.body < 5 }}
+    if: ${{ needs.get-length.outputs.title < 5 }} || ${{ needs.get-length.outputs.body == 0 }}
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -51,3 +47,17 @@ jobs:
           comment: Please check that the issue is described correctly. The name should reflect the meaning
                   of the issue. The body of the issue should contain a description of the problem and code
                   to reproduce it. You can use the issue [template]( ${{ inputs.REPO_PATH }} ) to make it easy.
+
+  check_issue_body:
+    needs: get-length
+    if: ${{ needs.get-length.outputs.body < 30}}
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Comment issue
+        uses: KeisukeYamashita/create-comment@v1
+        with:
+           comment: Please check that the issue is described correctly. The body of the issue
+          should contain a description of the problem and code to reproduce it.
+          You can use the issue [template]( ${{ inputs.REPO_PATH }} ) to make it easy.
