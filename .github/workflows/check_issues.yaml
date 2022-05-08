@@ -36,6 +36,11 @@ jobs:
     permissions:
       issues: write
     steps:
+      - name: print
+        env:
+          foo1_OUTPUT: ${{ needs.get-length.outputs.title }}
+        run: echo "$foo1_OUTPUT"
+
       - name: Label issue
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
         with:
