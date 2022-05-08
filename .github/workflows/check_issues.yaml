@@ -26,8 +26,8 @@ jobs:
       - id: getLength
         run: |
           PREPARED_TITLE=$(echo $TITLE | sed 's/ //g; s/\[bug\]//; s/\[Bug\]//; s/\[BUG\]//')
-          echo "::set_output name=title_length::${#PREPARED_TITLE}"
-          echo "::set_output name=body_length::${#BODY}"
+          echo "::set-output name=title_length::${#PREPARED_TITLE}"
+          echo "::set-output name=body_length::${#BODY}"
 
       - name: print
         run: |
