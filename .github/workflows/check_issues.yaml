@@ -30,11 +30,11 @@ jobs:
       body: ${{ steps.getLength.outputs.body_length }}
 
   check-issue:
+    needs: get-length
+    if: ${{ needs.get-length.outputs.title < 5 }}
     runs-on: ubuntu-latest
     permissions:
       issues: write
-    needs: get-length
-    if: ${{ needs.get-length.outputs.title < 5 }}
     steps:
       - name: Label issue
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
