@@ -31,7 +31,7 @@ jobs:
 
       - name: print
         run: |
-          echo ${{ steps.getLength.outputs.title_length }}
+          echo ${{ steps.getLength.outputs.body_length }}
 
   check-issue:
     needs: get-length
