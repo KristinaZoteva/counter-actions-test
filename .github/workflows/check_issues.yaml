@@ -14,7 +14,7 @@ on:
         required: true
 
 jobs:
-  get_lenght:
+  get-length:
     runs-on: ubuntu-latest
     env:
       TITLE: ${{ inputs.ISSUE_TITLE }}
@@ -33,8 +33,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       issues: write
-    needs: get_lenght
-    if: needs.get_lenght.outputs.title <= 5
+    needs: get-length
+    if: 'needs.get-length.outputs.title < 5'
     steps:
       - name: Label issue
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
