@@ -34,7 +34,7 @@ jobs:
     permissions:
       issues: write
     needs: get-length
-    if: 'needs.get-length.outputs.title < 5'
+    if: ${{ needs.get-length.outputs.title < 5 }}
     steps:
       - name: Label issue
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
