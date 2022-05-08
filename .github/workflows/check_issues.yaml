@@ -19,15 +19,19 @@ jobs:
     env:
       TITLE: ${{ inputs.ISSUE_TITLE }}
       BODY: ${{ inputs.ISSUE_BODY }}
+    outputs:
+      title: ${{ steps.getLength.outputs.title_length }}
+      body: ${{ steps.getLength.outputs.body_length }}
     steps:
       - id: getLength
         run: |
           PREPARED_TITLE=$(echo $TITLE | sed 's/ //g; s/\[bug\]//; s/\[Bug\]//; s/\[BUG\]//')
-          echo "::set_output name=title_length::${toJson(#PREPARED_TITLE)}"
+          echo "::set_output name=title_length::${#PREPARED_TITLE}"
           echo "::set_output name=body_length::${#BODY}"
-    outputs:
-      title: ${{ steps.getLength.outputs.title_length }}
-      body: ${{ steps.getLength.outputs.body_length }}
+
+      - name: print
+        run: |
+          echo ${{ steps.getLength.outputs.title_length }}
 
   check-issue:
     needs: get-length
@@ -36,11 +40,6 @@ jobs:
     permissions:
       issues: write
     steps:
-      - name: print
-        env:
-          foo1_OUTPUT: ${{ needs.get-length.outputs.title }}
-        run: echo "$foo1_OUTPUT"
-
       - name: Label issue
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
         with:
