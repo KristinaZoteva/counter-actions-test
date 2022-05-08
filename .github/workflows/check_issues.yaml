@@ -23,7 +23,7 @@ jobs:
       - id: get-length
         run: |
           PREPARED_TITLE=$(echo $TITLE | sed 's/ //g; s/\[bug\]//; s/\[Bug\]//; s/\[BUG\]//')
-          echo "::set_output name=title_length::$(echo #PREPARED_TITLE)"
+          echo "::set_output name=title_length::${#PREPARED_TITLE}"
           echo "::set_output name=body_length::${#BODY}"
     outputs:
       title: ${{ steps.get-length.outputs.title_length }}
