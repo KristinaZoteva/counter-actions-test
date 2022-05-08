@@ -14,36 +14,34 @@ on:
         required: true
 
 jobs:
-  check-issue:
+  get_lenght:
     runs-on: ubuntu-latest
-    outputs:
-      title: ${{ steps.getLength.outputs.title_length }}
-      body: ${{ steps.getLength.outputs.body_length }}
     env:
       TITLE: ${{ inputs.ISSUE_TITLE }}
       BODY: ${{ inputs.ISSUE_BODY }}
-    permissions:
-      issues: write
-
     steps:
       - id: getLength
         run: |
-            PREPARED_TITLE=$(echo $TITLE | sed 's/ //g; s/\[bug\]//; s/\[Bug\]//; s/\[BUG\]//')
-            echo "::set_output name=title_length::${#PREPARED_TITLE}"
-            echo "::set_output name=body_length::${#BODY}"
+          PREPARED_TITLE=$(echo $TITLE | sed 's/ //g; s/\[bug\]//; s/\[Bug\]//; s/\[BUG\]//')
+          echo "::set_output name=title_length::${#PREPARED_TITLE}"
+          echo "::set_output name=body_length::${#BODY}"
+    outputs:
+      title: ${{ steps.getLength.outputs.title_length }}
+      body: ${{ steps.getLength.outputs.body_length }}
 
-      - name: print
-        run: |
-          echo $(steps.getLength.outputs.title)
-
+  check-issue:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    needs: get_lenght
+    if: needs.getLength.outputs.title <= 5
+    steps:
       - name: Label issue
-        if: steps.getLength.outputs.title.value <= 5
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
         with:
          add-labels: "WIP"
 
       - name: Comment issue
-        if: steps.getLength.outputs.title.value <= 5
         uses: KeisukeYamashita/create-comment@v1
         with:
           comment: Please check that the issue is described correctly. The name should reflect the meaning
