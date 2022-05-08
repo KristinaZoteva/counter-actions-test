@@ -23,8 +23,8 @@ jobs:
       - id: getLength
         run: |
           PREPARED_TITLE=$(echo $TITLE | sed 's/ //g; s/\[bug\]//; s/\[Bug\]//; s/\[BUG\]//')
-          echo "::set_output name=title_length::$(#PREPARED_TITLE)"
-          echo "::set_output name=body_length::$(#BODY)"
+          echo "::set_output name=title_length::${#PREPARED_TITLE}"
+          echo "::set_output name=body_length::${#BODY}"
     outputs:
       title: ${{ steps.getLength.outputs.title_length }}
       body: ${{ steps.getLength.outputs.body_length }}
@@ -34,7 +34,7 @@ jobs:
     permissions:
       issues: write
     needs: get_lenght
-    if: needs.getLength.outputs.title <= 5
+    if: needs.get_lenght.outputs.title <= 5
     steps:
       - name: Label issue
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
